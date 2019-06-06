@@ -139,25 +139,27 @@ def delete_chart(company):
 	frappe.cache().hset("init_details", frappe.session.user, {})
 
 def notify_frappe_team(company):
-	subject = "New Chart of Accounts {chart_name} submitted".format(chart_name=company)
-	message = """
-		New Chart of Accounts: {chart_name}
-		Country: {country}
-		Submitted By: {user}
-	""".format(chart_name=company,
-		country=frappe.db.get_value("Company", company, "country"),
-		user=frappe.session.user)
+	pass
+	# subject = "New Chart of Accounts {chart_name} submitted".format(chart_name=company)
+	# message = """
+	# 	New Chart of Accounts: {chart_name}
+	# 	Country: {country}
+	# 	Submitted By: {user}
+	# """.format(chart_name=company,
+	# 	country=frappe.db.get_value("Company", company, "country"),
+	# 	user=frappe.session.user)
 
-	frappe.sendmail(recipients="developers@erpnext.com", subject=subject, message=message)
+	# frappe.sendmail(recipients="developers@erpnext.com", subject=subject, message=message)
 
 @frappe.whitelist()
 def email_comment(company, comment):
-	subject = _("New comment on Charts - {0}").format(company)
-	message = _("{0} <small>by {1}</small>").format(comment, frappe.session.user)
-	message += "<p><a href='chart?company={0}' style='font-size: 80%'>{1}</a></p>"\
-		.format(company, _("View it in your browser"))
+	pass
+	# subject = _("New comment on Charts - {0}").format(company)
+	# message = _("{0} <small>by {1}</small>").format(comment, frappe.session.user)
+	# message += "<p><a href='chart?company={0}' style='font-size: 80%'>{1}</a></p>"\
+	# 	.format(company, _("View it in your browser"))
 
-	frappe.sendmail(recipients="developers@erpnext.com", subject=subject, message=message)
+	# frappe.sendmail(recipients="developers@erpnext.com", subject=subject, message=message)
 
 def validate_roots(company):
 	roots = frappe.db.sql("""select account_name, root_type from tabAccount
